@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DataGridCustomizationApp.Themes"
+                    xmlns:viewModels="clr-namespace:DataGridCustomizationApp.ViewModels"
+                    xmlns:views="clr-namespace:DataGridCustomizationApp.Views">
+    <DataTemplate DataType="{x:Type viewModels:DataGridViewModel}">
+        <views:DataGridView />
+    </DataTemplate>
+</ResourceDictionary>

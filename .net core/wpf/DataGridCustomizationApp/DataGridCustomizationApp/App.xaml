@@ -1,0 +1,26 @@
+﻿<Application x:Class="DataGridCustomizationApp.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:DataGridCustomizationApp"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <!-- styles -->
+                <ResourceDictionary Source="/DataGridCustomizationApp;component/Themes/Styles.xaml" />
+
+                <!-- views -->
+                <ResourceDictionary Source="/DataGridCustomizationApp;component/Themes/ViewsDictionary.xaml" />
+
+                <ResourceDictionary>
+                    <local:ViewModelLocator x:Key="Locator"/>
+                </ResourceDictionary>
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+        
+    </Application.Resources>
+</Application>
