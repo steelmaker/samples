@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using DataGridCustomizationApp.Common;
 
 namespace DataGridCustomizationApp.ViewModels
@@ -64,12 +65,7 @@ namespace DataGridCustomizationApp.ViewModels
                     Value = random.Next(i + 23),
                 };
 
-                if (itemViewModel.Value % 3 == 0)
-                    itemViewModel.ItemDecorationType = ItemDecorationType.C;
-                else if (itemViewModel.Value % 2 == 0)
-                    itemViewModel.ItemDecorationType = ItemDecorationType.B;
-                else if (itemViewModel.Value == 0)
-                    itemViewModel.ItemDecorationType = ItemDecorationType.A;
+                
 
                 items.Add(itemViewModel);
             }
@@ -80,10 +76,40 @@ namespace DataGridCustomizationApp.ViewModels
 
     public class ItemViewModel : ViewModelBase, IDecorationItem
     {
+        private int _value;
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Value { get; set; }
-        public ItemDecorationType ItemDecorationType { get; set; }
+
+        public int Value
+        {
+            get => _value;
+            set => Set(ref _value, value);
+        }
+
+        public ItemDecorationType ItemDecorationType => GetDecorationType();
+
+        public ItemViewModel()
+        {
+            PropertyChanged += OnPropertyChanged;
+        }
+
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(Value))
+                RaisePropertyChanged(nameof(ItemDecorationType));
+        }
+
+        private ItemDecorationType GetDecorationType()
+        {
+            if (Value % 3 == 0)
+                return ItemDecorationType.C;
+            if (Value % 2 == 0)
+                return ItemDecorationType.B;
+            if (Value == 0)
+                return ItemDecorationType.A;
+
+            return ItemDecorationType.None;
+        }
     }
 
     public interface IDecorationItem
