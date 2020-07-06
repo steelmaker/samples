@@ -38,8 +38,22 @@
 
             <DataGrid Grid.Column="1"
                       ItemsSource="{Binding Items}"
-                      AutoGenerateColumns="False"
-                      RowStyle="{StaticResource DecorationDataGridRowStyle}">
+                      AutoGenerateColumns="False">
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ItemDecorationType}" Value="A">
+                                <Setter Property="Background" Value="LightBlue"></Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ItemDecorationType}" Value="B">
+                                <Setter Property="Background" Value="LightPink"></Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ItemDecorationType}" Value="C">
+                                <Setter Property="Background" Value="LightSkyBlue"></Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                     <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
